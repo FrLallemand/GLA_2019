@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,32 +23,67 @@ public class Utilisateurs implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "LOGIN")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer login;
 
-    public Long getId() {
-        return id;
+    @Column(name = "MDP")
+    private String mdp;
+
+    public String getMdp() {
+        return mdp;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    @Column(name = "NOM")
+    private String nom;
+
+    @Column(name = "PRENOM")
+    private String prenom;
+
+    
+    public Integer getLogin() {
+        return login;
+    }
+
+    public void setLogin(Integer login) {
+        this.login = login;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (login != null ? login.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the login fields are not set
         if (!(object instanceof Utilisateurs)) {
             return false;
         }
         Utilisateurs other = (Utilisateurs) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.login == null && other.login != null) || (this.login != null && !this.login.equals(other.login))) {
             return false;
         }
         return true;
@@ -55,7 +91,7 @@ public class Utilisateurs implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Utilisateurs[ id=" + id + " ]";
+        return "entities.Utilisateurs[ id=" + login + " ]";
     }
     
 }
