@@ -1,0 +1,34 @@
+@startuml
+class Utilisateur {
+	nom: String
+	prenom: String
+	login: String
+	mpd: String
+}
+
+class Article {
+	nom: String
+	prix: Double
+	datelim : Date
+}
+
+class Enchere {
+	montant: Double
+}
+
+class Livraison {
+	adresse: String
+}
+
+class Facturation {
+	adresse: String
+}
+
+Utilisateur "0..*" -- "1" Article : vendeur
+Utilisateur "0..*" -- "0..*" Enchere : enchereur
+Enchere "1" -- "1" Article : article
+Utilisateur "0..*" -- "1" Livraison : acheteur
+Article "1" -- "1..*" Livraison
+Facturation "1" -- "1" Livraison
+
+@enduml
