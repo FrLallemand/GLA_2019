@@ -1,3 +1,4 @@
+
 # Compiled class file
 *.class
 
@@ -33,4 +34,40 @@ hs_err_pid*
 /EnchereApplication/EnchereApplication-war/build/
 /EnchereApplication/build/
 /EnchereApplication/dist/
+=======
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+
+
+/EnchereApplication/nbproject/private/
+/EnchereApplication/EnchereApplication-war/nbproject/private/
+/EnchereApplication/EnchereApplication-ejb/nbproject/private/
+
+/EnchereApplication/EnchereApplication-ejb/build/
+/EnchereApplication/EnchereApplication-ejb/dist/
+/EnchereApplication/EnchereApplication-war/build/
+/EnchereApplication/dist/
+/EnchereApplication/build/
 /EnchereApplication/EnchereApplication-war/dist/
