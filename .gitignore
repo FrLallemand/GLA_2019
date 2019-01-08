@@ -28,3 +28,9 @@ hs_err_pid*
 /EnchereApplication/EnchereApplication-war/nbproject/private/
 /EnchereApplication/EnchereApplication-ejb/nbproject/private/
 
+/EnchereApplication/EnchereApplication-ejb/build/
+/EnchereApplication/EnchereApplication-ejb/dist/
+/EnchereApplication/EnchereApplication-war/build/
+/EnchereApplication/build/
+/EnchereApplication/dist/
+/EnchereApplication/EnchereApplication-war/dist/
