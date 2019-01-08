@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,15 @@ public class Articles implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String nom;
+    private double prix;
+    
+    @Embedded
+    Utilisateurs vendeur;
+    
+    @Embedded
+    Utilisateurs acheteur;
 
     public Long getId() {
         return id;
@@ -32,6 +42,32 @@ public class Articles implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getNom() {
+        return this.nom;
+    }
+    
+    public void setNom(String n){
+        this.nom = n;
+    }
+    
+    public double getPrix(){
+        return this.prix;
+    }
+    
+    public void setPrix(double prix){
+        this.prix = prix;
+    }
+    
+    public Utilisateurs getVendeur(){
+        return this.vendeur;
+    }
+    
+    public void setVendeur(Utilisateurs u){
+        this.vendeur = u;
+    }
+    
+    
 
     @Override
     public int hashCode() {
