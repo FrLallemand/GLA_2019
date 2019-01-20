@@ -6,11 +6,13 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,17 +25,20 @@ public class Articles implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     private String nom;
     private double prix;
     
-    @Embedded
-    Utilisateurs vendeur;
+    //@Embedded
+    @OneToOne   
+    Utilisateur vendeur;
     
-    @Embedded
-    Utilisateurs acheteur;
+    //@Embedded
+    @OneToOne
+    Utilisateur acheteur;
 
     public Long getId() {
         return id;
@@ -59,11 +64,11 @@ public class Articles implements Serializable {
         this.prix = prix;
     }
     
-    public Utilisateurs getVendeur(){
+    public Utilisateur getVendeur(){
         return this.vendeur;
     }
     
-    public void setVendeur(Utilisateurs u){
+    public void setVendeur(Utilisateur u){
         this.vendeur = u;
     }
     

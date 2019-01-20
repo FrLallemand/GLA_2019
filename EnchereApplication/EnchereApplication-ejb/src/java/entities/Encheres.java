@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -35,11 +36,11 @@ public class Encheres {
         this.montant = montant;
     }
 
-    public Utilisateurs getEnchereur() {
+    public Utilisateur getEnchereur() {
         return enchereur;
     }
 
-    public void setEnchereur(Utilisateurs enchereur) {
+    public void setEnchereur(Utilisateur enchereur) {
         this.enchereur = enchereur;
     }
 
@@ -51,10 +52,10 @@ public class Encheres {
         this.article = article;
     }
             
-    @Embedded
-    Utilisateurs enchereur;
+    @OneToOne
+    Utilisateur enchereur;
     
-    @Embedded
+    @OneToOne
     Articles article;
 
     public Long getId() {

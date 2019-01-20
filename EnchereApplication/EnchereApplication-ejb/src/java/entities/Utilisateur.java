@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,16 +20,33 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "UTILISATEURS")
-public class Utilisateurs implements Serializable {
+public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "LOGIN")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer login;
-
+    private Long id;
+    
+    @Column(name = "LOGIN")
+    private String login;
     @Column(name = "MDP")
-    private String mdp;
+    private String mdp;    
+    @Column(name = "NOM")
+    private String nom;
+    @Column(name = "PRENOM")
+    private String prenom;
+
+    public Utilisateur() {
+    }
+    
+    
+    public Utilisateur(String login, String mdp, String nom, String prenom){
+        this.login = login;
+        this.mdp = mdp;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
 
     public String getMdp() {
         return mdp;
@@ -53,19 +71,12 @@ public class Utilisateurs implements Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
-    @Column(name = "NOM")
-    private String nom;
-
-    @Column(name = "PRENOM")
-    private String prenom;
-
     
-    public Integer getLogin() {
+    public String getLogin() {
         return login;
     }
 
-    public void setLogin(Integer login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -79,10 +90,10 @@ public class Utilisateurs implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the login fields are not set
-        if (!(object instanceof Utilisateurs)) {
+        if (!(object instanceof Utilisateur)) {
             return false;
         }
-        Utilisateurs other = (Utilisateurs) object;
+        Utilisateur other = (Utilisateur) object;
         if ((this.login == null && other.login != null) || (this.login != null && !this.login.equals(other.login))) {
             return false;
         }
@@ -91,7 +102,7 @@ public class Utilisateurs implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Utilisateurs[ id=" + login + " ]";
+        return "entities.Utilisateurs[ id=" + id + " ]";
     }
     
 }
