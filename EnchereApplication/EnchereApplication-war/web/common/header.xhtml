@@ -21,10 +21,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         
-                        <ui:repeat var="elem" value="#{navigationManagedBean.listMenu}">
+                        <ui:repeat var="elem" value="#{navigationBean.list}">
 
                             <li class="nav-item">
-                                <h:link class="nav-link" value="#{elem.displayName}" outcome="#{elem.link}" />
+                                <h:link class="nav-link" value="#{elem.name}" outcome="#{elem.link}" />
                             </li>
 
                         </ui:repeat>
