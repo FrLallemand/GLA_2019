@@ -13,38 +13,30 @@
         <ui:composition template="common/layout.xhtml">
 
             <ui:define name="htmlhead">
-                <title>Inscription</title>
+                <title>Connexion</title>
             </ui:define>
             
             
             <ui:define name="content">
                 <h1 class="mt-4 mb-3" align="center">
-                    Inscription : 
+                    Connexion : 
                 </h1>
                 <div>
                     <h:form id="loginForm" >
                         <h:outputLabel>Login : </h:outputLabel>
-                        <h:inputText id="login" class="form-control" value="#{signUpBean.login}" />
+                        <h:inputText id="login" class="form-control" value="#{connectionBean.login}" />
                         <br/>
                         
                         <h:outputLabel>Mot de Passe : </h:outputLabel>
-                        <h:inputSecret id="mdp" class="form-control" value="#{signUpBean.mdp}" />
+                        <h:inputSecret id="mdp" class="form-control" value="#{connectionBean.mdp}" />
                         <br/>
-                        
-                        <h:outputLabel>Nom : </h:outputLabel>
-                        <h:inputText id="nom" class="form-control" value="#{signUpBean.nom}" />
-                        <br/>
-                        
-                        <h:outputLabel>Prénom : </h:outputLabel>
-                        <h:inputText id="prenom" class="form-control" value="#{signUpBean.prenom}" />
-                        <br/>
-                        
-                        <h:commandButton class="btn btn-primary" value="Valider" action="#{signUpBean.submit()}"/>
+                        <h:commandButton class="btn btn-primary" value="Se connecter" action="#{connectionBean.submit()}"/>
                     </h:form>
                 </div>
             </ui:define>
 
         </ui:composition>
+
             
             
     </h:body>

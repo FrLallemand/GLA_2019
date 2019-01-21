@@ -24,6 +24,7 @@ public class NavigationBean {
         this.list = new ArrayList<NavigationElement>();
         
         this.list.add(new NavigationElement("Inscription", "signup.xhtml"));
+        this.list.add(new NavigationElement("Connexion", "connection.xhtml"));
     }
     
     public List<NavigationElement> getList() {

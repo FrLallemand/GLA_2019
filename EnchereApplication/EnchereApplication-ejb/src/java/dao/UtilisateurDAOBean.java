@@ -25,4 +25,17 @@ public class UtilisateurDAOBean {
         em.persist(u);
         return u;
     }
+    
+    public Utilisateur authenticate(String login, String mdp) {
+        Utilisateur u = em
+                .createNamedQuery("Utilisateur.authenticate", Utilisateur.class)
+                .setParameter("login", login)
+                .getSingleResult();
+
+        if(u != null && u.getMdp().equals(mdp)) {
+            return u;
+        } else {
+            return null;
+        }
+    }
 }
