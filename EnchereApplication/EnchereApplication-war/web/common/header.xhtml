@@ -14,10 +14,10 @@
         <!-- Navigation -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <h:link class="navbar-brand" value="Ventes aux enchères" outcome="index" />
-                <button class="navbar-toggler navbar-toggler-right" type="button" action="#{itemManagedBean.initBDD()}" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <h:link class="navbar-brand" value="Ventes aux enchères" outcome="index.xhtml" />
+                <!--button class="navbar-toggler navbar-toggler-right" type="button" action="#{itemManagedBean.initBDD()}" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button-->
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         
@@ -29,14 +29,14 @@
 
                         </ui:repeat>
 
-                        <c:if test="#{not empty navigationManagedBean.currentLogin}">
+                        <c:if test="#{not empty navigationBean.id}">
                             <li class="nav-item">
                                 <h:form>
-                                    <h:commandLink class="nav-link" action="#{userBean.disconnect()}">Déconnexion</h:commandLink>
+                                    <h:commandLink class="nav-link" action="#{connectionBean.disconnect()}">Déconnexion</h:commandLink>
                                 </h:form>
                             </li>
                             <li class="nav-item">
-                                <span class="navbar-brand">Bonjour, #{navigationManagedBean.currentLogin} !</span>
+                                <span class="navbar-brand">#{navigationBean.nom} #{navigationBean.prenom}</span>
                             </li>
                             
                         </c:if>

@@ -5,6 +5,7 @@
  */
 package user;
 
+import cookies.CookieJar;
 import dao.UtilisateurDAOBean;
 import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
@@ -31,10 +32,23 @@ public class ConnectionBean {
         this.mdp = "";
     }
 
-    public String submit() {
+    public String connect() {
         if(this.formIsValid()){
             Utilisateur utilisateur = utilisateurDAO.authenticate(login, mdp);
+            CookieJar.getInstance().addCookie("id", String.valueOf(utilisateur.getId()), 900 /*15 minutes*/);
+            CookieJar.getInstance().addCookie("login", String.valueOf(utilisateur.getLogin()), 900 /*15 minutes*/);
+            CookieJar.getInstance().addCookie("nom", String.valueOf(utilisateur.getNom()), 900 /*15 minutes*/);
+            CookieJar.getInstance().addCookie("prenom", String.valueOf(utilisateur.getPrenom()), 900 /*15 minutes*/);
         }
+        return "index?faces-redirect=true";
+    }
+    
+    public String disconnect() {
+        System.out.println("disconnect");
+        CookieJar.getInstance().removeCookie("id");
+        CookieJar.getInstance().removeCookie("login");
+        CookieJar.getInstance().removeCookie("nom");
+        CookieJar.getInstance().removeCookie("prenom"); 
         return "index?faces-redirect=true";
     }
 

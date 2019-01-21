@@ -33,7 +33,7 @@ public class Utilisateur implements Serializable {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(name = "LOGIN")
     private String login;
     @Column(name = "MDP")
@@ -52,6 +52,14 @@ public class Utilisateur implements Serializable {
         this.mdp = mdp;
         this.nom = nom;
         this.prenom = prenom;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMdp() {
