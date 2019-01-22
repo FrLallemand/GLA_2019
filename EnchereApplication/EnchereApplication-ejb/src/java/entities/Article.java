@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +26,15 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "ARTICLES")
+@NamedQueries({
+    
+    @NamedQuery(name = "Article.findAll", 
+            query = "select a from Article a"),
+    @NamedQuery(name = "Article.findAllAvailable", 
+            query = "select a from Article a where a.fin > :searchedDate"),    
+    @NamedQuery(name = "Article.findAllAvailableNamed",
+            query = "select a from Article a where a.fin > :searchedDate and upper(a.nom) like upper(:nom)") // uppercase 
+})
 public class Article implements Serializable {
 
 
