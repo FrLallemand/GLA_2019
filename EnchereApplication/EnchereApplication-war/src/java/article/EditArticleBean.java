@@ -62,13 +62,13 @@ public class EditArticleBean {
     }
 
     public String edit() {
-        Article a = articleManager.getById(articleID);
+        Article a = articleDAOBean.getById(articleID);
         a.setNom(article.getNom());
         a.setDescription(article.getDescription());
         a.setPrix(article.getPrix());
         a.setCategories(article.getCategories());
         a.setFin(article.getFin());
-        articleManager.edit(a);
+        //TODO
 
         return "index?faces-redirect=true";
     }

@@ -48,6 +48,9 @@ public class ArticleDAOBean {
                 .setParameter("nom", nom)
                 .getResultList();
     }
-
+    
+    public Article getById(long id) {
+        return null; //TODO
+    }
     
 }

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        
+        <ui:composition template="common/layout.xhtml">
+
+            <ui:define name="htmlhead">
+                <title>Modification d'article : </title>
+
+                <f:metadata>
+                    <f:viewParam name="articleID" value="#{editArticleBean.articleID}" />
+                    <f:viewAction action="#{editArticleBean.findArticle()}" />
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="content">
+                <c:choose>
+                    <c:when test="#{not empty navigationBean.login}">
+
+                        <h:form>
+                            <fieldset>
+                                <legend>Modification d'article </legend>
+
+                                <h:outputLabel for="name">Nom : </h:outputLabel>
+                                <h:inputText id="nom" class="form-control" value="#{editArticleBean.article.nom}" />
+                                <br/>
+
+                                <h:outputLabel for="description">Description : </h:outputLabel>
+                                <h:inputTextarea id="description" class="form-control" value="#{editArticleBean.article.description}" />
+                                <br/>
+
+                                <h:outputLabel for="startingPrice">Prix : </h:outputLabel>
+                                <h:inputText id="prix" class="form-control" value="#{editArticleBean.article.prix}" />
+                                <br/>
+
+                                <h:outputLabel for="endDate">Fin des enchères : </h:outputLabel>
+                                <h:inputText p:type="date" id="fin" class="form-control" value="#{editArticleBean.article.fin}" >  
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                </h:inputText>
+                                <br/>
+
+                                <h:commandButton value="Modifier" class="btn btn-primary" action="#{editArticleBean.edit()}" />
+                            </fieldset>
+                        </h:form>
+
+                    </c:when>
+
+                </c:choose>
+            </ui:define>
+
+        </ui:composition>
+        
+    </h:body>
+</html>
