@@ -21,7 +21,7 @@ import javax.servlet.http.Cookie;
 public class NavigationBean {
     
     private List<NavigationElement> list; 
-    private String id;
+    private Long id;
     private String login;
     private String nom;
     private String prenom;
@@ -37,7 +37,7 @@ public class NavigationBean {
             this.list.add(new NavigationElement("Inscription", "signup.xhtml"));
             this.list.add(new NavigationElement("Connexion", "connection.xhtml"));  
         } else {
-            id = idCookie.getValue();
+            id = Long.parseLong(idCookie.getValue());
             nom = nomCookie.getValue();
             prenom = prenomCookie.getValue();
             login = loginCookie.getValue();            
@@ -52,11 +52,11 @@ public class NavigationBean {
         this.list = list;
     }    
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

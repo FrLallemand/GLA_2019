@@ -93,9 +93,11 @@ public class CookieJar {
         
         //recherche si le cookie existe
         Cookie[] cookies = request.getCookies();
-        for(Cookie c : cookies){
-            if(c.getName().equals(name)) {
-                cookie = c;
+        if(cookies != null){
+            for(Cookie c : cookies){
+                if(c.getName().equals(name)) {
+                    cookie = c;
+                }
             }
         }
         return cookie;

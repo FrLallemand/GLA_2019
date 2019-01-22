@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -21,7 +24,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ARTICLES")
-public class Articles implements Serializable {
+public class Article implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,8 +33,18 @@ public class Articles implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(name = "NOM")
     private String nom;
+    @Column(name = "DESCRIPTION")   
+    private String description;
+    @Column(name = "CATEGORIES")
+    private String categories;
+    @Column(name = "PRIX")
     private double prix;
+    
+    @Column(name = "FIN")
+    @Temporal(TemporalType.DATE)
+    private Date fin;
     
     //@Embedded
     @OneToOne   
@@ -73,6 +87,37 @@ public class Articles implements Serializable {
     }
     
     
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    public Utilisateur getAcheteur() {
+        return acheteur;
+    }
+
+    public void setAcheteur(Utilisateur acheteur) {
+        this.acheteur = acheteur;
+    }
+    
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
 
     @Override
     public int hashCode() {
@@ -84,10 +129,10 @@ public class Articles implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Articles)) {
+        if (!(object instanceof Article)) {
             return false;
         }
-        Articles other = (Articles) object;
+        Article other = (Article) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
