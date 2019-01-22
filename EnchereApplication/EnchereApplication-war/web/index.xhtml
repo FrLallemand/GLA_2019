@@ -18,10 +18,27 @@
 
             <ui:define name="content">
                 <h2>Articles en vente :</h2>
-
+                <c:if test="#{not empty navigationBean.id}">
                 <table>
+                    <div class="row">
+                        <ui:repeat var="elem" value="#{searchArticleBean.all}">
 
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <!-- add link -->
+                                        </h4>
+                                        <p class="card-text">#{elem.description}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ui:repeat>
+                    </div>
                 </table>
+                </c:if>
+
             </ui:define>
 
         </ui:composition>

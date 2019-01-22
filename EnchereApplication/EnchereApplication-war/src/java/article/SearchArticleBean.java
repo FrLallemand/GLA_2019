@@ -39,6 +39,9 @@ public class SearchArticleBean {
        articles = articleDAO.searchArticleNamed(this.nom);        
     }
     
+    public List<Article> getAll(){
+       return articleDAO.getAll();        
+    }
     
     public ArticleDAOBean getArticleDAO() {
         return articleDAO;
