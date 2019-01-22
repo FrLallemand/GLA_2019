@@ -44,7 +44,7 @@ public class ArticleDAOBean {
 
     public List<Article> searchArticleNamed(String nom) {
         return em.createNamedQuery("Article.findAllAvailableNamed", Article.class)
-                .setParameter("fin", new Date())
+                .setParameter("searchedDate", new Date())
                 .setParameter("nom", nom)
                 .getResultList();
     }
