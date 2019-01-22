@@ -144,4 +144,7 @@ public class Article implements Serializable {
         return "entities.Articles[ id=" + id + " ]";
     }
     
+    public void addVendeur(Utilisateur utilisateur){
+        this.vendeur = utilisateur;
+    }
 }

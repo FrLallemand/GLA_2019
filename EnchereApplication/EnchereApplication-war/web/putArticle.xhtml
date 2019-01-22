@@ -28,7 +28,7 @@
                         <br/>
                         
                         <h:outputLabel>Description : </h:outputLabel>
-                        <h:inputSecret id="description" class="form-control" value="#{putArticleBean.article.description}" />
+                        <h:inputText id="description" class="form-control" value="#{putArticleBean.article.description}" />
                         <br/>
                         
                         <h:outputLabel>Catégories : </h:outputLabel>
@@ -40,7 +40,7 @@
                         <br/>
                         
                         <h:outputLabel>Fin des enchères : </h:outputLabel>
-                        <h:inputText id="fin" class="form-control" value="#{putArticleBean.article.fin}" 
+                        <h:inputText id="fin" class="form-control" value="#{putArticleBean.article.fin}">
                             <f:convertDateTime pattern="yyyy-MM-dd"/>
                         </h:inputText>
                         <br/>

@@ -6,6 +6,7 @@
 package dao;
 
 import entities.Article;
+import entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,7 +27,11 @@ public class ArticleDAOBean {
     }
     
     public Article addToUtilisateur(Article a, Long id) {
-        return null;
+        Utilisateur utilisateur = em.find(Utilisateur.class, id);
+        
+        a.addVendeur(utilisateur);        
+        em.merge(a);
+        return a;
     }
     
     

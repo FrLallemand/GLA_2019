@@ -37,6 +37,7 @@ public class NavigationBean {
             this.list.add(new NavigationElement("Inscription", "signup.xhtml"));
             this.list.add(new NavigationElement("Connexion", "connection.xhtml"));  
         } else {
+            this.list.add(new NavigationElement("Nouvel Article", "putArticle.xhtml"));
             id = Long.parseLong(idCookie.getValue());
             nom = nomCookie.getValue();
             prenom = prenomCookie.getValue();
