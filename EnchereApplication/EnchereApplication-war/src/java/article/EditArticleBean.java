@@ -20,14 +20,14 @@ import navigation.NavigationBean;
  * @author ghaniturismo
  */
 @Named(value = "editArticleBean")
-@RequestScoped
 @ManagedBean
+@RequestScoped
 public class EditArticleBean {
 
     @EJB
     private ArticleDAOBean articleDAOBean;
 
-    @EJB
+    //@EJB
     //private UserManagerBean userManager;
 
     private NavigationBean navigationBean;
