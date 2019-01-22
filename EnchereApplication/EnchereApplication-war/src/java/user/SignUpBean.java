@@ -22,27 +22,30 @@ import javax.faces.bean.ManagedBean;
 @RequestScoped
 public class SignUpBean {
     
-     @EJB
+    @EJB
     private UtilisateurDAOBean utilisateurDAO;
     private String login;
     private String mdp;
     private String nom;
     private String prenom;
+    private String adrFacturation;
 
     public SignUpBean() {
         this.login = "";
         this.mdp = "";
         this.nom = "";
         this.prenom = "";
+        this.adrFacturation = "";
     }
 
     public String submit() {
         if(this.formIsValid()){
-            Utilisateur utilisateur = utilisateurDAO.create(new Utilisateur(login, mdp, nom, prenom));
+            Utilisateur utilisateur = utilisateurDAO.create(new Utilisateur(login, mdp, nom, prenom, adrFacturation));
             CookieJar.getInstance().addCookie("id", String.valueOf(utilisateur.getId()), 900 /*15 minutes*/);
             CookieJar.getInstance().addCookie("login", String.valueOf(utilisateur.getLogin()), 900 /*15 minutes*/);
             CookieJar.getInstance().addCookie("nom", String.valueOf(utilisateur.getNom()), 900 /*15 minutes*/);
             CookieJar.getInstance().addCookie("prenom", String.valueOf(utilisateur.getPrenom()), 900 /*15 minutes*/);
+            CookieJar.getInstance().addCookie("adrFacturation", String.valueOf(utilisateur.getAdrFacturation()), 900 /*15 minutes*/);
         }
         return "index?faces-redirect=true";
     }
@@ -51,7 +54,8 @@ public class SignUpBean {
         if(login.equals("") ||
                 mdp.equals("") ||
                 nom.equals("") ||
-                prenom.equals("")) {
+                prenom.equals("") ||
+                adrFacturation.equals("")) {
             return false;
         }
         return true;
@@ -95,6 +99,14 @@ public class SignUpBean {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getAdrFacturation() {
+        return adrFacturation;
+    }
+
+    public void setAdrFacturation(String adrFacturation) {
+        this.adrFacturation = adrFacturation;
     }
 
 }
