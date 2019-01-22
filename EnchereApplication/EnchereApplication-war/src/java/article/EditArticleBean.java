@@ -9,6 +9,7 @@ import dao.ArticleDAOBean;
 import entities.Article;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
@@ -20,6 +21,7 @@ import navigation.NavigationBean;
  */
 @Named(value = "editArticleBean")
 @RequestScoped
+@ManagedBean
 public class EditArticleBean {
 
     @EJB
@@ -68,7 +70,8 @@ public class EditArticleBean {
         a.setPrix(article.getPrix());
         a.setCategories(article.getCategories());
         a.setFin(article.getFin());
-        //TODO
+        
+        articleDAOBean.save(a);
 
         return "index?faces-redirect=true";
     }

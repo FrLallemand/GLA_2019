@@ -50,7 +50,11 @@ public class ArticleDAOBean {
     }
     
     public Article getById(long id) {
-        return null; //TODO
+        return em.find(Article.class, id);
     }
     
+    public Article save(Article a) {
+        em.merge(a);
+        return a;
+    }
 }
