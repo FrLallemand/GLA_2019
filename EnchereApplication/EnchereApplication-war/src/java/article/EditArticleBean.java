@@ -34,7 +34,7 @@ public class EditArticleBean {
 
     @ManagedProperty(value = "#{param.id}")
     private Long id;
-
+    
     private Article article;
 
     /**
@@ -46,22 +46,19 @@ public class EditArticleBean {
         this.navigationBean = new NavigationBean();
     }
 
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-    }
-
     public String create() {
         articleDAOBean.addToUtilisateur(article, navigationBean.getId());
         return "index?faces-redirect=true";
     }
 
-    public void findArticle() {
-        article = articleDAOBean.getById(id);
+    public void retrieveArticle(){
+        this.article = articleDAOBean.getById(this.id);
     }
+    
+    public void removeArticle(){
+        articleDAOBean.removeById(this.id);
+    }
+
 
     public String edit() {
         Article a = articleDAOBean.getById(id);
@@ -75,13 +72,21 @@ public class EditArticleBean {
 
         return "index?faces-redirect=true";
     }
+    
+    public Article getArticle() {
+        return article;
+    }
 
-    public Long getArticleID() {
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+    
+    public Long getId() {
         return id;
     }
 
-    public void setArticleID(Long articleID) {
-        this.id = articleID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

@@ -52,6 +52,12 @@ public class ArticleDAOBean {
     public Article getById(long id) {
         return em.find(Article.class, id);
     }
+
+    public void removeById(long id) {
+        //TODO : correct relations in database
+        
+        em.remove(em.find(Article.class, id));        
+    }
     
     public Article save(Article a) {
         em.merge(a);

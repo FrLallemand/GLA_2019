@@ -49,7 +49,13 @@ public class DisplayArticleBean {
     public void setId(Long id) {
         this.id = id;
     }
+
     public void retrieveArticle(){
         this.article = articleDAOBean.getById(this.id);
     }
+    
+    public void removeArticle(){
+        this.article = articleDAOBean.getById(this.id);
+    }
+
 }

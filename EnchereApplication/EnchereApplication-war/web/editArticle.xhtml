@@ -14,12 +14,16 @@
 
             <ui:define name="htmlhead">
                 <title>Modification d'article : </title>
+                <f:metadata>
+                    <f:viewParam name="id" value="#{editArticleBean.id}" />
+                    <f:viewAction action="#{editArticleBean.retrieveArticle()}" />
+                </f:metadata>
 
             </ui:define>
 
             <ui:define name="content">
                 <c:choose>
-                    <c:when test="#{not empty navigationBean.login}">
+                    <c:when test="#{not empty navigationBean.id}">
 
                         <h:form>
                             <fieldset>
@@ -46,9 +50,9 @@
                                 <h:commandButton value="Modifier" class="btn btn-primary" action="#{editArticleBean.edit()}" />
                             </fieldset>
                         </h:form>
-
+                        <h:commandButton class="btn btn-primary" value="Supprimer" action="#{editArticleBean.removeArticle()}" />
+       
                     </c:when>
-
                 </c:choose>
             </ui:define>
 

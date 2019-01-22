@@ -22,23 +22,30 @@
             
             
             <ui:define name="content">
-                <h1 class="mt-4 mb-3" align="center">
-                    Article : #{displayArticleBean.article.nom}
-                </h1>
-                <div>
-                    <h:form id="articleForm" >
-                        <h:outputLabel>Description : </h:outputLabel>
-                        #{displayArticleBean.article.description}
-                        <br/>
-                        
-                        <h:outputLabel>Prix : </h:outputLabel>
-                        #{displayArticleBean.article.prix}
-                        <br/>
-                        
-                        <h:outputLabel>Fin des enchères : </h:outputLabel>
-                        #{displayArticleBean.article.fin}
-                        </h:form>
-                </div>
+                <c:choose>
+                    <c:when test="#{not empty navigationBean.id}">
+               
+                        <h1 class="mt-4 mb-3" align="center">
+                            Article : #{displayArticleBean.article.nom}
+                        </h1>
+                        <div>
+                            <h:outputLabel>Description : </h:outputLabel>
+                            #{displayArticleBean.article.description}
+                            <br/>
+
+                            <h:outputLabel>Prix : </h:outputLabel>
+                            #{displayArticleBean.article.prix}
+                            <br/>
+
+                            <h:outputLabel>Fin des enchères : </h:outputLabel>
+                            #{displayArticleBean.article.fin}
+                        </div>
+
+                        <h:link class="btn btn-primary" outcome="editArticle" value="Modifier">
+                            <f:param name="id" value="#{displayArticleBean.article.id}" />                        
+                        </h:link>
+                    </c:when>
+                </c:choose>
             </ui:define>
 
         </ui:composition>
