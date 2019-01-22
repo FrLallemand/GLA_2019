@@ -39,6 +39,10 @@
                         <h:inputText id="prenom" class="form-control" value="#{signUpBean.prenom}" />
                         <br/>
                         
+                        <h:outputLabel>Adresse de Facturation : </h:outputLabel>
+                        <h:inputText id="adrFacturation" class="form-control" value="#{signUpBean.adrFacturation}" />
+                        <br/>
+                        
                         <h:commandButton class="btn btn-primary" value="Valider" action="#{signUpBean.submit()}"/>
                     </h:form>
                 </div>

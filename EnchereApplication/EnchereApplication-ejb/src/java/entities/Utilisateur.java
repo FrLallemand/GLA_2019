@@ -7,7 +7,6 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,16 +41,19 @@ public class Utilisateur implements Serializable {
     private String nom;
     @Column(name = "PRENOM")
     private String prenom;
-
+    @Column(name = "ADRFACTURATION")
+    private String adrFacturation;
+        
     public Utilisateur() {
     }
     
     
-    public Utilisateur(String login, String mdp, String nom, String prenom){
+    public Utilisateur(String login, String mdp, String nom, String prenom, String adrFacturation){
         this.login = login;
         this.mdp = mdp;
         this.nom = nom;
         this.prenom = prenom;
+        this.adrFacturation = adrFacturation;
     }
     
     public Long getId() {
@@ -84,6 +86,14 @@ public class Utilisateur implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getAdrFacturation() {
+        return adrFacturation;
+    }
+
+    public void setAdrFacturation(String adrFacturation) {
+        this.adrFacturation = adrFacturation;
     }
     
     public String getLogin() {
