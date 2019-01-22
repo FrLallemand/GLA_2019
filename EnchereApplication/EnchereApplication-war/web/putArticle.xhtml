@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    
+    <h:body>
+        
+        <ui:composition template="common/layout.xhtml">
+
+            <ui:define name="htmlhead">
+                <title>Nouvel Article</title>
+            </ui:define>
+            
+            
+            <ui:define name="content">
+                <h1 class="mt-4 mb-3" align="center">
+                    Ajouter un article : 
+                </h1>
+                <div>
+                    <h:form id="articleForm" >
+                        <h:outputLabel>Nom : </h:outputLabel>
+                        <h:inputText id="nom" class="form-control" value="#{putArticleBean.article.nom}" />
+                        <br/>
+                        
+                        <h:outputLabel>Description : </h:outputLabel>
+                        <h:inputSecret id="description" class="form-control" value="#{putArticleBean.article.description}" />
+                        <br/>
+                        
+                        <h:outputLabel>Catégories : </h:outputLabel>
+                        <h:inputText id="categories" class="form-control" value="#{putArticleBean.article.categories}" />
+                        <br/>
+                        
+                        <h:outputLabel>Prix : </h:outputLabel>
+                        <h:inputText id="prix" class="form-control" value="#{putArticleBean.article.prix}" />
+                        <br/>
+                        
+                        <h:outputLabel>Fin des enchères : </h:outputLabel>
+                        <h:inputText id="fin" class="form-control" value="#{putArticleBean.article.fin}" 
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        </h:inputText>
+                        <br/>
+                        
+                        <h:commandButton class="btn btn-primary" value="Valider" action="#{putArticleBean.putArticle()}"/>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+            
+            
+    </h:body>
+</html>
+

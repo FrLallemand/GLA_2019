@@ -44,11 +44,11 @@ public class Encheres {
         this.enchereur = enchereur;
     }
 
-    public Articles getArticle() {
+    public Article getArticle() {
         return article;
     }
 
-    public void setArticle(Articles article) {
+    public void setArticle(Article article) {
         this.article = article;
     }
             
@@ -56,7 +56,7 @@ public class Encheres {
     Utilisateur enchereur;
     
     @OneToOne
-    Articles article;
+    Article article;
 
     public Long getId() {
         return id;
