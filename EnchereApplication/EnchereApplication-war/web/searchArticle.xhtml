@@ -7,21 +7,34 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
     </h:head>
-
+    
     <h:body>
-
+        
         <ui:composition template="common/layout.xhtml">
 
             <ui:define name="htmlhead">
-                <title>Default</title>
+                <title>Recherche d'article</title>
             </ui:define>
-
+            
+            
             <ui:define name="content">
-                <h2>Articles en vente :</h2>
-                <c:if test="#{not empty navigationBean.id}">
+                <h1 class="mt-4 mb-3" align="center">
+                    Rechercher un article : 
+                </h1>
+                <div>
+                    <h:form id="articleForm" >
+                        <h:outputLabel>Nom : </h:outputLabel>
+                        <h:inputText id="nom" class="form-control" value="#{searchArticleBean.nom}" />
+                        <br/>
+                                                
+                        <h:commandButton class="btn btn-primary" value="Valider" action="#{searchArticleBean.search()}"/>
+                    </h:form>
+                </div>
+                <br></br>
+
                 <table>
                     <div class="row">
-                        <ui:repeat var="elem" value="#{searchArticleBean.all}">
+                        <ui:repeat var="elem" value="#{searchArticleBean.articles}">
 
                             <div class="col-lg-4 col-sm-6">
                                 <div class="card h-100">
@@ -37,12 +50,12 @@
                         </ui:repeat>
                     </div>
                 </table>
-                </c:if>
 
-            </ui:define>
+            </ui:define>             
 
         </ui:composition>
-
+            
+            
     </h:body>
 </html>
 
