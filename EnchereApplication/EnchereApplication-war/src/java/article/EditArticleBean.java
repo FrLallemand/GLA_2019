@@ -32,8 +32,8 @@ public class EditArticleBean {
 
     private NavigationBean navigationBean;
 
-    @ManagedProperty(value = "#{param.articleID}")
-    private Long articleID;
+    @ManagedProperty(value = "#{param.id}")
+    private Long id;
 
     private Article article;
 
@@ -60,11 +60,11 @@ public class EditArticleBean {
     }
 
     public void findArticle() {
-        article = articleDAOBean.getById(articleID);
+        article = articleDAOBean.getById(id);
     }
 
     public String edit() {
-        Article a = articleDAOBean.getById(articleID);
+        Article a = articleDAOBean.getById(id);
         a.setNom(article.getNom());
         a.setDescription(article.getDescription());
         a.setPrix(article.getPrix());
@@ -77,11 +77,11 @@ public class EditArticleBean {
     }
 
     public Long getArticleID() {
-        return articleID;
+        return id;
     }
 
     public void setArticleID(Long articleID) {
-        this.articleID = articleID;
+        this.id = articleID;
     }
 
 }

@@ -27,7 +27,10 @@
                                 <div class="card h-100">
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <!-- add link -->
+                                            <h:link outcome="displayArticle" value="#{elem.nom}">
+                                                <f:param name="id" value="#{elem.id}" />
+                                            </h:link>
+                                        #{elem.prix}
                                         </h4>
                                         <p class="card-text">#{elem.description}</p>
                                     </div>
