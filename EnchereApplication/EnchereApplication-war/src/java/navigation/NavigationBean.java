@@ -27,7 +27,7 @@ public class NavigationBean {
     private String prenom;
 
     public NavigationBean() {
-        this.list = new ArrayList<NavigationElement>();
+        this.list = new ArrayList<>();
         Cookie idCookie = CookieJar.getInstance().getIdCookie();
         Cookie nomCookie = CookieJar.getInstance().getNomCookie();
         Cookie prenomCookie = CookieJar.getInstance().getPrenomCookie();
@@ -38,7 +38,9 @@ public class NavigationBean {
             this.list.add(new NavigationElement("Connexion", "connection.xhtml"));  
         } else {
             this.list.add(new NavigationElement("Nouvel Article", "putArticle.xhtml"));
+            this.list.add(new NavigationElement("Mes Articles", "list.xhtml"));
             this.list.add(new NavigationElement("Rechercher", "searchArticle.xhtml"));
+            this.list.add(new NavigationElement("Mon Panier", "panier.xhtml"));
             id = Long.parseLong(idCookie.getValue());
             nom = nomCookie.getValue();
             prenom = prenomCookie.getValue();
