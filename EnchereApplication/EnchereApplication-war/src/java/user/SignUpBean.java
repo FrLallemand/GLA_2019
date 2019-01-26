@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 import entities.Utilisateur;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -39,15 +40,19 @@ public class SignUpBean {
     }
 
     public String submit() {
-        if(this.formIsValid()){
-            Utilisateur utilisateur = utilisateurDAO.create(new Utilisateur(login, mdp, nom, prenom, adrFacturation));
-            CookieJar.getInstance().addCookie("id", String.valueOf(utilisateur.getId()), 900 /*15 minutes*/);
-            CookieJar.getInstance().addCookie("login", String.valueOf(utilisateur.getLogin()), 900 /*15 minutes*/);
-            CookieJar.getInstance().addCookie("nom", String.valueOf(utilisateur.getNom()), 900 /*15 minutes*/);
-            CookieJar.getInstance().addCookie("prenom", String.valueOf(utilisateur.getPrenom()), 900 /*15 minutes*/);
-            CookieJar.getInstance().addCookie("adrFacturation", String.valueOf(utilisateur.getAdrFacturation()), 900 /*15 minutes*/);
+        try{
+            if(this.formIsValid()){
+                Utilisateur utilisateur = utilisateurDAO.create(new Utilisateur(login, mdp, nom, prenom, adrFacturation));
+                CookieJar.getInstance().addCookie("id", String.valueOf(utilisateur.getId()), 900 /*15 minutes*/);
+                CookieJar.getInstance().addCookie("login", String.valueOf(utilisateur.getLogin()), 900 /*15 minutes*/);
+                CookieJar.getInstance().addCookie("nom", String.valueOf(utilisateur.getNom()), 900 /*15 minutes*/);
+                CookieJar.getInstance().addCookie("prenom", String.valueOf(utilisateur.getPrenom()), 900 /*15 minutes*/);
+                CookieJar.getInstance().addCookie("adrFacturation", String.valueOf(utilisateur.getAdrFacturation()), 900 /*15 minutes*/);
+            }
+            return "index?faces-redirect=true";
+        }catch(EJBException e){
+                return "signup?faces-redirect=false";
         }
-        return "index?faces-redirect=true";
     }
 
     private boolean formIsValid() {
