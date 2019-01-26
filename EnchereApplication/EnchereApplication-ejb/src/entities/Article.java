@@ -38,7 +38,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Article.findAllAvailableNamed",
             query = "select a from Article a where a.fin > :searchedDate and upper(a.nom) like upper(:nom)"), // uppercase 
     @NamedQuery(name = "Article.findAllBuyedNotSended",
-            query = "SELECT a FROM Article a WHERE a.sended = false AND a.acheteur = :user")
+            query = "SELECT a FROM Article a WHERE a.sended = false AND a.acheteur = :user"),
+    @NamedQuery(name = "Article.findAllOfTheDay",
+            query = "select a from Article a where a.fin = :searchedDate"), // uppercase 
 })
 public class Article implements Serializable {
 
@@ -142,6 +144,11 @@ public class Article implements Serializable {
         return fin;
     }
 
+
+    public List<Encheres> getListEnchere() {
+        return listEnchere;
+    }
+    
     public void setFin(Date fin) {
         this.fin = fin;
     }

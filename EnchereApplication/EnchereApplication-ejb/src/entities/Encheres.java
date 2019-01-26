@@ -25,8 +25,10 @@ import javax.persistence.Table;
         @NamedQuery(name="Encheres.priceOfAnArticle",
                 query="SELECT MAX(e.montant) FROM Encheres e WHERE e.article=:mArticle")
                 ,
-                @NamedQuery(name="Enchere.findForArticle",
-            query="select e from Encheres e where e.article.id = :searchedArticle")
+        @NamedQuery(name="Enchere.findForArticle",
+                query="select e from Encheres e where e.article.id = :searchedArticle"),
+        @NamedQuery(name= "Encheres.listOfBuyerOrdered",
+                query="SELECT e FROM Encheres e WHERE e.article=:mArticle ORDER BY e.montant DESC")
 })
 
 public class Encheres {

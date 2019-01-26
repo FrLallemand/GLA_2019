@@ -9,6 +9,7 @@ import entities.Article;
 import entities.Utilisateur;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
