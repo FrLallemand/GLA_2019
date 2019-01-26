@@ -50,6 +50,14 @@ public class ArticleDAOBean {
                 .setParameter("user",utilisateur)
                 .getResultList();                
     }
+    
+    public List<Article> getPanier(Long id) {
+        Utilisateur utilisateur = em.find(Utilisateur.class, id);
+        return em
+                .createNamedQuery("Article.findAllBuyedNotSended", Article.class)
+                .setParameter("user",utilisateur)
+                .getResultList();                
+    }
 
     public List<Article> searchArticleNamed(String nom) {
         return em.createNamedQuery("Article.findAllAvailableNamed", Article.class)

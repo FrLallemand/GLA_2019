@@ -50,6 +50,12 @@ public class SearchArticleBean {
        return articleDAO.getAllMine(Long.parseLong(idCookie.getValue()));        
     }
     
+    public List<Article> getPanier(){
+       Cookie idCookie = CookieJar.getInstance().getIdCookie();
+       return articleDAO.getPanier(Long.parseLong(idCookie.getValue()));        
+       
+    }
+    
     public ArticleDAOBean getArticleDAO() {
         return articleDAO;
     }
