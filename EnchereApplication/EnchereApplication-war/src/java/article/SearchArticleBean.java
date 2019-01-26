@@ -5,6 +5,7 @@
  */
 package article;
 
+import cookies.CookieJar;
 import dao.ArticleDAOBean;
 import entities.Article;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -41,6 +43,11 @@ public class SearchArticleBean {
     
     public List<Article> getAll(){
        return articleDAO.getAll();        
+    }
+    
+    public List<Article> getAllMine(){
+       Cookie idCookie = CookieJar.getInstance().getIdCookie();
+       return articleDAO.getAllMine(Long.parseLong(idCookie.getValue()));        
     }
     
     public ArticleDAOBean getArticleDAO() {

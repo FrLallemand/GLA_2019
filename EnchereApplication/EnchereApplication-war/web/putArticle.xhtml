@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
     </h:head>
     
@@ -35,9 +36,9 @@
                         <h:inputText id="prix" class="form-control" value="#{putArticleBean.article.prix}" />
                         <br/>
                         
-                        <h:outputLabel>Fin des enchères : </h:outputLabel>
-                        <h:inputText id="fin" class="form-control" value="#{putArticleBean.article.fin}">
-                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        <h:outputLabel for="endDate">Fin des enchères : </h:outputLabel>
+                        <h:inputText p:type="date" id="fin" class="form-control" value="#{putArticleBean.article.fin}" >  
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
                         </h:inputText>
                         <br/>
                         

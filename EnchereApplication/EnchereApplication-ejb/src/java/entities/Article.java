@@ -31,10 +31,14 @@ import javax.persistence.TemporalType;
     
     @NamedQuery(name = "Article.findAll", 
             query = "select a from Article a"),
+    @NamedQuery(name = "Article.findAllOf", 
+            query = "select a from Article a WHERE a.vendeur = :user"),
     @NamedQuery(name = "Article.findAllAvailable", 
             query = "select a from Article a where a.fin > :searchedDate"),    
     @NamedQuery(name = "Article.findAllAvailableNamed",
-            query = "select a from Article a where a.fin > :searchedDate and upper(a.nom) like upper(:nom)") // uppercase 
+            query = "select a from Article a where a.fin > :searchedDate and upper(a.nom) like upper(:nom)"), // uppercase 
+    @NamedQuery(name = "Article.findAllBuyedNotSended",
+            query = "SELECT a FROM Article a WHERE a.sended = false AND a.acheteur = :user")
 })
 public class Article implements Serializable {
 
@@ -66,8 +70,16 @@ public class Article implements Serializable {
     @OneToOne
     Utilisateur acheteur;
     
+    Boolean sended;
+    
     @OneToMany(targetEntity=Encheres.class, mappedBy="article")
     List<Encheres> listEnchere;
+
+    public Article() {
+        sended = false;
+    }
+    
+    
 
     public Long getId() {
         return id;

@@ -43,9 +43,15 @@
                             <h:outputText value="#{displayArticleBean.article.fin}"/>
                         </div>
 
-                        <h:link class="btn btn-primary" outcome="editArticle" value="Modifier">
-                            <f:param name="id" value="#{displayArticleBean.article.id}" />                        
-                        </h:link>
+                        <c:if test="#{displayArticleBean.isVendeur()}">
+                            <h:link class="btn btn-primary" outcome="editArticle" value="Modifier">
+                                <f:param name="id" value="#{displayArticleBean.article.id}" />                        
+                            </h:link>
+                        </c:if>
+                        <c:if test="#{!displayArticleBean.isVendeur()}">
+                            <h:link class="btn btn-primary" value="Acheter">                       
+                            </h:link>
+                        </c:if>
                     </c:when>
                 </c:choose>
             </ui:define>

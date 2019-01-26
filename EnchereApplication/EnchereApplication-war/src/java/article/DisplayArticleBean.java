@@ -5,6 +5,7 @@
  */
 package article;
 
+import cookies.CookieJar;
 import dao.ArticleDAOBean;
 import entities.Article;
 import javax.ejb.EJB;
@@ -12,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -58,4 +60,12 @@ public class DisplayArticleBean {
         this.article = articleDAOBean.getById(this.id);
     }
 
+    public double getActualPrice(){
+        return articleDAOBean.getActualPrice(this.article);
+    }
+    
+    public Boolean isVendeur(){
+        Long myID = Long.parseLong(CookieJar.getInstance().getIdCookie().getValue());
+        return this.articleDAOBean.isVendeur(article, myID);
+    }
 }

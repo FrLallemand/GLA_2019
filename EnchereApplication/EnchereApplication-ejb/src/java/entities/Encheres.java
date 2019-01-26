@@ -22,8 +22,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ENCHERES")
 @NamedQueries(
-        @NamedQuery(name="priceOfAnArticle",
-                query="SELECT e,MAX(e.montant) FROM Encheres e WHERE e.article=:mArticle")
+        @NamedQuery(name="Encheres.priceOfAnArticle",
+                query="SELECT MAX(e.montant) FROM Encheres e WHERE e.article=:mArticle")
 )
 public class Encheres {
     private static final long serialVersionUID = 1L;

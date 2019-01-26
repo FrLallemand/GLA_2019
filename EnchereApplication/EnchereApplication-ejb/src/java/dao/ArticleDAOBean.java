@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -41,6 +42,14 @@ public class ArticleDAOBean {
                 .createNamedQuery("Article.findAll", Article.class)
                 .getResultList();                
     }
+    
+    public List<Article> getAllMine(Long id) {
+        Utilisateur utilisateur = em.find(Utilisateur.class, id);
+        return em
+                .createNamedQuery("Article.findAllOf", Article.class)
+                .setParameter("user",utilisateur)
+                .getResultList();                
+    }
 
     public List<Article> searchArticleNamed(String nom) {
         return em.createNamedQuery("Article.findAllAvailableNamed", Article.class)
@@ -51,7 +60,7 @@ public class ArticleDAOBean {
     
     public double getActualPrice(Article article){
         try{
-            return em.createNamedQuery("priceOfAnArticle",Double.class)
+            return em.createNamedQuery("Encheres.priceOfAnArticle",Double.class)
                     .setParameter("mArticle",article)
                     .getSingleResult();
         }catch(Exception e){
@@ -72,5 +81,11 @@ public class ArticleDAOBean {
     public Article save(Article a) {
         em.merge(a);
         return a;
+    }
+    
+    public Boolean isVendeur(Article a,long id){
+        //System.out.println("error:"+a.getAcheteur().getId());
+        Utilisateur vendeur = em.merge(a.getVendeur());
+        return vendeur.getId()==id;//a.getAcheteur().getId()==id;
     }
 }
