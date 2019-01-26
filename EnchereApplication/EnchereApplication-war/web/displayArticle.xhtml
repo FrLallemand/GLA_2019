@@ -1,12 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
     </h:head>
+    
+    <f:metadata>
+        <f:viewParam name="id" value="#{displayArticleBean.id}" />
+        <f:viewAction action="#{displayArticleBean.retrieveArticle()}" />
+    </f:metadata>    
     
     <h:body>
         
@@ -14,10 +19,7 @@
 
             <ui:define name="htmlhead">
                 <title>Nouvel Article</title>
-                <f:metadata>
-                    <f:viewParam name="id" value="#{displayArticleBean.id}" />
-                    <f:viewAction action="#{displayArticleBean.retrieveArticle()}" />
-                </f:metadata>
+
             </ui:define>
             
             
@@ -26,19 +28,19 @@
                     <c:when test="#{not empty navigationBean.id}">
                
                         <h1 class="mt-4 mb-3" align="center">
-                            Article : #{displayArticleBean.article.nom}
+                            Article : <h:outputText value="#{displayArticleBean.article.nom}"/>
                         </h1>
                         <div>
                             <h:outputLabel>Description : </h:outputLabel>
-                            #{displayArticleBean.article.description}
+                            <h:outputText value="#{displayArticleBean.article.description}" />
                             <br/>
 
                             <h:outputLabel>Prix : </h:outputLabel>
-                            #{displayArticleBean.article.prix}
+                            <h:outputText value="#{displayArticleBean.article.prix}"/>
                             <br/>
 
                             <h:outputLabel>Fin des enchères : </h:outputLabel>
-                            #{displayArticleBean.article.fin}
+                            <h:outputText value="#{displayArticleBean.article.fin}"/>
                         </div>
 
                         <h:link class="btn btn-primary" outcome="editArticle" value="Modifier">
