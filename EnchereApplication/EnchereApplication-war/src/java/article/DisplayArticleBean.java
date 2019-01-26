@@ -7,7 +7,10 @@ package article;
 
 import cookies.CookieJar;
 import dao.ArticleDAOBean;
+import dao.EnchereDAOBean;
 import entities.Article;
+import entities.Encheres;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -29,6 +32,9 @@ public class DisplayArticleBean {
     
     @EJB
     private ArticleDAOBean articleDAOBean;
+    
+    @EJB
+    private EnchereDAOBean enchereDAOBean;
 
     private Article article;
     
@@ -50,6 +56,27 @@ public class DisplayArticleBean {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public double getPrix(){
+        List<Encheres> encheres = enchereDAOBean.getForArticle(article.getId());
+        
+        System.out.println("size of the list " + encheres.size());
+        
+        if(encheres.isEmpty()){
+            return this.article.getPrix();
+        }
+        else{
+            double highestBid = 0;
+            
+            for(Encheres e : encheres){
+                if(e.getMontant() > highestBid){
+                    highestBid = e.getMontant();
+                }
+            }
+            
+            return highestBid;
+        }
     }
 
     public void retrieveArticle(){

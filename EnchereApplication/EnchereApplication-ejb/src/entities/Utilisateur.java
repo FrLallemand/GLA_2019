@@ -23,7 +23,9 @@ import javax.persistence.Table;
 @Table(name = "UTILISATEURS")
 @NamedQueries({
     @NamedQuery(name = "Utilisateur.authenticate",
-            query = "SELECT u FROM Utilisateur u where u.login = :login")
+            query = "SELECT u FROM Utilisateur u where u.login = :login"),
+    @NamedQuery(name = "Utilisateur.userById",
+            query = "SELECT u FROM Utilisateur u where u.id = :id")
 })
 public class Utilisateur implements Serializable {
 
@@ -33,7 +35,7 @@ public class Utilisateur implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "LOGIN",unique=true)
+    @Column(name = "LOGIN")
     private String login;
     @Column(name = "MDP")
     private String mdp;    

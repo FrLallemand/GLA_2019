@@ -21,10 +21,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ENCHERES")
-@NamedQueries(
+@NamedQueries({
         @NamedQuery(name="Encheres.priceOfAnArticle",
                 query="SELECT MAX(e.montant) FROM Encheres e WHERE e.article=:mArticle")
-)
+                ,
+                @NamedQuery(name="Enchere.findForArticle",
+            query="select e from Encheres e where e.article.id = :searchedArticle")
+})
+
 public class Encheres {
     private static final long serialVersionUID = 1L;
     
@@ -58,7 +62,7 @@ public class Encheres {
         this.article = article;
     }
             
-    @OneToOne
+    @ManyToOne
     Utilisateur enchereur;
     
     @ManyToOne
