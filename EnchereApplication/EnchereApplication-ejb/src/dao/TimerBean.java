@@ -21,13 +21,13 @@ import javax.persistence.PersistenceContext;
  * @author leduc
  */
 @Stateless
-public class TimerBean implements TimerBeanLocal {
+public class TimerBean {
 
     @PersistenceContext(unitName = "EnchereApplication-ejbPU")
     private EntityManager em;
     
-    //@Schedule(second = "0", minute = "0", hour = "0", dayOfMonth = "*", month = "*", year = "*")
-    @Schedule(hour="*",second="*/10",minute="*")
+    @Schedule(second = "0", minute = "0", hour = "0", dayOfMonth = "*", month = "*", year = "*")
+    //@Schedule(hour="*",second="*/10",minute="*")      //utilisé pour les tests
     public void MAJEncheres(){
         System.out.println("MAJ du jour");
         List<Article> listArticleOfToday = em.createNamedQuery("Article.findAllOfTheDay", Article.class)

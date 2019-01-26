@@ -17,7 +17,7 @@
             </ui:define>
             
             <ui:define name="content">
-                <h2>Articles en vente :</h2>
+                <h2>Articles remportés :</h2>
                 <c:if test="#{not empty navigationBean.id}">
                 <table>
                     <div class="row">
@@ -41,7 +41,9 @@
                     </div>
                 </table>
                 </c:if>
-
+                <h:form id="articleForm" >
+                    <h:commandButton class="btn btn-primary" value="Envoyer" action="#{searchArticleBean.sendPanier()}"/>
+                </h:form>
             </ui:define>
         </ui:composition>
         

@@ -144,7 +144,10 @@ public class Article implements Serializable {
         return fin;
     }
 
-
+    public void setSended(Boolean sended) {
+        this.sended = sended;
+    }
+    
     public List<Encheres> getListEnchere() {
         return listEnchere;
     }

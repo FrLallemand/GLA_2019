@@ -59,6 +59,18 @@ public class ArticleDAOBean {
                 .setParameter("user",utilisateur)
                 .getResultList();                
     }
+    
+    public void sendPanier(Long id) {
+        Utilisateur utilisateur = em.find(Utilisateur.class, id);
+        List<Article> listToSend= em.createNamedQuery("Article.findAllBuyedNotSended", Article.class)
+                .setParameter("user",utilisateur)
+                .getResultList();
+        for(Article art:listToSend){
+            art.setSended(true);
+            em.merge(art);
+            //TODO envoyer l'article
+        }
+    }
 
     public List<Article> searchArticleNamed(String nom) {
         return em.createNamedQuery("Article.findAllAvailableNamed", Article.class)

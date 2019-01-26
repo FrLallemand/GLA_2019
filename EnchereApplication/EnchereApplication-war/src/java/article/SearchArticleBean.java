@@ -56,6 +56,12 @@ public class SearchArticleBean {
        
     }
     
+    public String sendPanier(){
+       Cookie idCookie = CookieJar.getInstance().getIdCookie();
+       articleDAO.sendPanier(Long.parseLong(idCookie.getValue()));        
+       return "index?faces-redirect=true";
+    }
+    
     public ArticleDAOBean getArticleDAO() {
         return articleDAO;
     }
