@@ -73,5 +73,9 @@ public class SearchArticleBean {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    
+    public double getActualPrice(Article elem){
+        return articleDAO.getActualPrice(elem);
+    }
 
 }

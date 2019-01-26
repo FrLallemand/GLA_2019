@@ -30,7 +30,7 @@
                                             <h:link outcome="displayArticle" value="#{elem.nom}">
                                                 <f:param name="id" value="#{elem.id}" />
                                             </h:link>
-                                        #{elem.prix}
+                                        #{searchArticleBean.getActualPrice(elem)}
                                         </h4>
                                         <p class="card-text">#{elem.description}</p>
                                     </div>

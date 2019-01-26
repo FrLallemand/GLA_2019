@@ -92,6 +92,8 @@ public class DisplayArticleBean {
     }
     
     public Boolean isVendeur(){
+        if(this.article==null)
+            return false;
         Long myID = Long.parseLong(CookieJar.getInstance().getIdCookie().getValue());
         return this.articleDAOBean.isVendeur(article, myID);
     }
