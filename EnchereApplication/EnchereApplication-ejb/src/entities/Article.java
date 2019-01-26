@@ -128,6 +128,10 @@ public class Article implements Serializable {
     public void setFin(Date fin) {
         this.fin = fin;
     }
+    
+    public boolean estFini() {
+        return (this.getFin().compareTo(new Date())) < 1;
+    }
 
     @Override
     public int hashCode() {
