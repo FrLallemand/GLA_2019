@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -57,10 +58,10 @@ public class Encheres {
         this.article = article;
     }
             
-    @OneToOne
+    @ManyToOne
     Utilisateur enchereur;
     
-    @OneToOne
+    @ManyToOne
     Article article;
 
     public Long getId() {

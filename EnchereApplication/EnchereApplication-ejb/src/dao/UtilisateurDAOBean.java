@@ -26,6 +26,14 @@ public class UtilisateurDAOBean {
         return u;
     }
     
+    public Utilisateur getById(String id){
+        Utilisateur u = em
+                .createNamedQuery("Utilisateur.userById", Utilisateur.class)
+                .setParameter("id", Long.parseLong(id))
+                .getSingleResult();
+        return u;
+    }
+    
     public Utilisateur authenticate(String login, String mdp) {
         Utilisateur u = em
                 .createNamedQuery("Utilisateur.authenticate", Utilisateur.class)

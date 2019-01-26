@@ -10,7 +10,9 @@
     
     <f:metadata>
         <f:viewParam name="id" value="#{displayArticleBean.id}" />
+        <f:viewParam name="id" value="#{enchereBean.articleId}" /> 
         <f:viewAction action="#{displayArticleBean.retrieveArticle()}" />
+        <f:viewAction action="#{enchereBean.setUp()}" /> 
     </f:metadata>    
     
     <h:body>
@@ -36,13 +38,24 @@
                             <br/>
 
                             <h:outputLabel>Prix : </h:outputLabel>
-                            <h:outputText value="#{displayArticleBean.article.prix}"/>
+                            <h:outputText value="#{displayArticleBean.getPrix()}"/>
                             <br/>
 
                             <h:outputLabel>Fin des enchères : </h:outputLabel>
                             <h:outputText value="#{displayArticleBean.article.fin}"/>
                         </div>
-
+                        
+                        <c:choose>
+                            <c:when test="#{not displayArticleBean.article.estFini()}">
+                                <h:form>
+                                    <fieldset>
+                                        <h:inputText id="enchereValue" class="form-control" value="#{enchereBean.enchereValue}"/>
+                                        <h:commandButton value="Enchérir" class="btn btn-primary" action="#{enchereBean.putEnchere()}" />
+                                    </fieldset>
+                                </h:form>
+                            </c:when>
+                        </c:choose>
+                        
                         <h:link class="btn btn-primary" outcome="editArticle" value="Modifier">
                             <f:param name="id" value="#{displayArticleBean.article.id}" />                        
                         </h:link>

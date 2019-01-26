@@ -60,9 +60,10 @@ public class ArticleDAOBean {
     }
     
     public Article getById(long id) {
+        System.out.println("ARTICLE FETCHED");
         return em.find(Article.class, id);
     }
-
+    
     public void removeById(long id) {
         //TODO : correct relations in database
         
