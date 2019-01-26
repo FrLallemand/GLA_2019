@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,6 +21,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ENCHERES")
+@NamedQueries(
+        @NamedQuery(name="priceOfAnArticle",
+                query="SELECT e,MAX(e.montant) FROM Encheres e WHERE e.article=:mArticle")
+)
 public class Encheres {
     private static final long serialVersionUID = 1L;
     
@@ -54,7 +61,7 @@ public class Encheres {
     @OneToOne
     Utilisateur enchereur;
     
-    @OneToOne
+    @ManyToOne
     Article article;
 
     public Long getId() {

@@ -49,6 +49,16 @@ public class ArticleDAOBean {
                 .getResultList();
     }
     
+    public double getActualPrice(Article article){
+        try{
+            return em.createNamedQuery("priceOfAnArticle",Double.class)
+                    .setParameter("mArticle",article)
+                    .getSingleResult();
+        }catch(Exception e){
+            return article.getPrix();
+        }
+    }
+    
     public Article getById(long id) {
         return em.find(Article.class, id);
     }
