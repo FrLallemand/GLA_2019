@@ -6,6 +6,7 @@
 package article;
 
 import cookies.CookieJar;
+import dao.ArticleDAO;
 import dao.ArticleDAOBean;
 import entities.Article;
 import javax.ejb.EJB;
@@ -24,7 +25,7 @@ import javax.servlet.http.Cookie;
 public class PutArticleBean {
     
     @EJB
-    private ArticleDAOBean articleDAO;
+    private ArticleDAO articleDAO;
     
     private Article article;
     

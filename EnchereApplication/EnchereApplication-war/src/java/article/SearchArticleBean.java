@@ -6,6 +6,7 @@
 package article;
 
 import cookies.CookieJar;
+import dao.ArticleDAO;
 import dao.ArticleDAOBean;
 import entities.Article;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import javax.servlet.http.Cookie;
 public class SearchArticleBean {
 
     @EJB
-    private ArticleDAOBean articleDAO;
+    private ArticleDAO articleDAO;
    
     private List<Article> articles;    
    
@@ -62,7 +63,7 @@ public class SearchArticleBean {
        return "index?faces-redirect=true";
     }
     
-    public ArticleDAOBean getArticleDAO() {
+    public ArticleDAO getArticleDAO() {
         return articleDAO;
     }
 

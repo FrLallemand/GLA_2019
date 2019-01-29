@@ -15,17 +15,19 @@ import javax.persistence.PersistenceContext;
  * @author francoislallemand
  */
 @Stateless
-public class UtilisateurDAOBean {
+public class UtilisateurDAOBean implements UtilisateurDAO {
     
     @PersistenceContext(unitName = "EnchereApplication-ejbPU")
     private EntityManager em;
     
     
+    @Override
     public Utilisateur create(Utilisateur u){
         em.persist(u);
         return u;
     }
     
+    @Override
     public Utilisateur getById(String id){
         Utilisateur u = em
                 .createNamedQuery("Utilisateur.userById", Utilisateur.class)
@@ -34,6 +36,7 @@ public class UtilisateurDAOBean {
         return u;
     }
     
+    @Override
     public Utilisateur authenticate(String login, String mdp) {
         Utilisateur u = em
                 .createNamedQuery("Utilisateur.authenticate", Utilisateur.class)

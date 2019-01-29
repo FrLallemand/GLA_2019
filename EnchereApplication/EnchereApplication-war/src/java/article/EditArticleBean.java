@@ -5,6 +5,7 @@
  */
 package article;
 
+import dao.ArticleDAO;
 import dao.ArticleDAOBean;
 import entities.Article;
 import java.util.Date;
@@ -25,7 +26,7 @@ import navigation.NavigationBean;
 public class EditArticleBean {
 
     @EJB
-    private ArticleDAOBean articleDAOBean;
+    private ArticleDAO articleDAOBean;
 
     //@EJB
     //private UserManagerBean userManager;

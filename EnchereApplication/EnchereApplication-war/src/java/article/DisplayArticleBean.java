@@ -6,7 +6,9 @@
 package article;
 
 import cookies.CookieJar;
+import dao.ArticleDAO;
 import dao.ArticleDAOBean;
+import dao.EnchereDAO;
 import dao.EnchereDAOBean;
 import entities.Article;
 import entities.Encheres;
@@ -31,10 +33,10 @@ public class DisplayArticleBean {
     private Long id;
     
     @EJB
-    private ArticleDAOBean articleDAOBean;
+    private ArticleDAO articleDAOBean;
     
     @EJB
-    private EnchereDAOBean enchereDAOBean;
+    private EnchereDAO enchereDAOBean;
 
     private Article article;
     
@@ -58,26 +60,6 @@ public class DisplayArticleBean {
         this.id = id;
     }
     
-    public double getPrix(){
-        List<Encheres> encheres = enchereDAOBean.getForArticle(article.getId());
-        
-        System.out.println("size of the list " + encheres.size());
-        
-        if(encheres.isEmpty()){
-            return this.article.getPrix();
-        }
-        else{
-            double highestBid = 0;
-            
-            for(Encheres e : encheres){
-                if(e.getMontant() > highestBid){
-                    highestBid = e.getMontant();
-                }
-            }
-            
-            return highestBid;
-        }
-    }
 
     public void retrieveArticle(){
         this.article = articleDAOBean.getById(this.id);

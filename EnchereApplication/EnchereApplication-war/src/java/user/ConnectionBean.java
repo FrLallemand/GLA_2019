@@ -6,6 +6,7 @@
 package user;
 
 import cookies.CookieJar;
+import dao.UtilisateurDAO;
 import dao.UtilisateurDAOBean;
 import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
@@ -23,7 +24,7 @@ import javax.faces.bean.ManagedBean;
 public class ConnectionBean {
     
      @EJB
-    private UtilisateurDAOBean utilisateurDAO;
+    private UtilisateurDAO utilisateurDAO;
     private String login;
     private String mdp;
 
@@ -60,7 +61,7 @@ public class ConnectionBean {
         return true;
     }
     
-    public UtilisateurDAOBean getUtilisateurDAO() {
+    public UtilisateurDAO getUtilisateurDAO() {
         return utilisateurDAO;
     }
 

@@ -7,12 +7,15 @@
 package article;
 
 import cookies.CookieJar;
+import dao.ArticleDAO;
 import dao.ArticleDAOBean;
+import dao.EnchereDAO;
 import dao.UtilisateurDAOBean;
 import entities.Article;
 import entities.Encheres;
 import entities.Utilisateur;
 import dao.EnchereDAOBean;
+import dao.UtilisateurDAO;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -32,13 +35,13 @@ public class EnchereBean {
     public Double enchereValue;
     
     @EJB
-    ArticleDAOBean articleDAOBean;
+    ArticleDAO articleDAOBean;
     
     @EJB
-    EnchereDAOBean enchereDAOBean;
+    EnchereDAO enchereDAOBean;
     
     @EJB
-    UtilisateurDAOBean utilisateurDAOBean;
+    UtilisateurDAO utilisateurDAOBean;
     
     @ManagedProperty(value = "#{param.id}")
     public Long articleId;

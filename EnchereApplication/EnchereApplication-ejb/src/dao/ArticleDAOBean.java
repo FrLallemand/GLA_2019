@@ -20,16 +20,18 @@ import javax.servlet.http.Cookie;
  * @author francoislallemand
  */
 @Stateless
-public class ArticleDAOBean {
+public class ArticleDAOBean implements ArticleDAO {
     
     @PersistenceContext(unitName = "EnchereApplication-ejbPU")
     private EntityManager em;
  
+    @Override
     public Article create(Article a){
         em.persist(a);
         return a;
     }
     
+    @Override
     public Article addToUtilisateur(Article a, Long id) {
         Utilisateur utilisateur = em.find(Utilisateur.class, id);
         
@@ -38,12 +40,14 @@ public class ArticleDAOBean {
         return a;
     }
     
+    @Override
     public List<Article> getAll() {
         return em
                 .createNamedQuery("Article.findAll", Article.class)
                 .getResultList();                
     }
     
+    @Override
     public List<Article> getAllMine(Long id) {
         Utilisateur utilisateur = em.find(Utilisateur.class, id);
         return em
@@ -52,6 +56,7 @@ public class ArticleDAOBean {
                 .getResultList();                
     }
     
+    @Override
     public List<Article> getPanier(Long id) {
         Utilisateur utilisateur = em.find(Utilisateur.class, id);
         return em
@@ -60,6 +65,7 @@ public class ArticleDAOBean {
                 .getResultList();                
     }
     
+    @Override
     public void sendPanier(Long id) {
         Utilisateur utilisateur = em.find(Utilisateur.class, id);
         List<Article> listToSend= em.createNamedQuery("Article.findAllBuyedNotSended", Article.class)
@@ -72,6 +78,7 @@ public class ArticleDAOBean {
         }
     }
 
+    @Override
     public List<Article> searchArticleNamed(String nom) {
         return em.createNamedQuery("Article.findAllAvailableNamed", Article.class)
                 .setParameter("searchedDate", new Date())
@@ -79,6 +86,7 @@ public class ArticleDAOBean {
                 .getResultList();
     }
     
+    @Override
     public double getActualPrice(Article article){
         Double prixTable = em.createNamedQuery("Encheres.priceOfAnArticle",Double.class)
                     .setParameter("mArticle",article)
@@ -89,22 +97,26 @@ public class ArticleDAOBean {
         
     }
     
+    @Override
     public Article getById(long id) {
         System.out.println("ARTICLE FETCHED");
         return em.find(Article.class, id);
     }
     
+    @Override
     public void removeById(long id) {
         //TODO : correct relations in database
         
         em.remove(em.find(Article.class, id));        
     }
     
+    @Override
     public Article save(Article a) {
         em.merge(a);
         return a;
     }
     
+    @Override
     public Boolean isVendeur(Article a,long id){
         //System.out.println("error:"+a.getAcheteur().getId());
         Utilisateur vendeur = em.merge(a.getVendeur());

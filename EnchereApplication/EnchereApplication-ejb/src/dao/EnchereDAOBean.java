@@ -17,15 +17,17 @@ import javax.persistence.PersistenceContext;
  * @author aceawan
  */
 @Stateless
-public class EnchereDAOBean {
+public class EnchereDAOBean implements EnchereDAO {
     @PersistenceContext(unitName = "EnchereApplication-ejbPU")
     private EntityManager em;
     
+    @Override
     public Encheres create(Encheres e){
         em.persist(e);
         return e;
     }
         
+    @Override
     public List<Encheres> getForArticle(Long id){
         return em
                 .createNamedQuery("Enchere.findForArticle", Encheres.class)

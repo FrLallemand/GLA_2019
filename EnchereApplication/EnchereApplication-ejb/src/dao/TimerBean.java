@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Schedule;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +21,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author leduc
  */
-@Stateless
+@Singleton
 public class TimerBean {
 
     @PersistenceContext(unitName = "EnchereApplication-ejbPU")
