@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package article;
+package encheres;
 
 import cookies.CookieJar;
 import dao.ArticleDAO;

@@ -30,8 +30,17 @@ public class EnchereDAOBean implements EnchereDAO {
     @Override
     public List<Encheres> getForArticle(Long id){
         return em
-                .createNamedQuery("Enchere.findForArticle", Encheres.class)
+                .createNamedQuery("Encheres.findForArticle", Encheres.class)
                 .setParameter("searchedArticle", id)
                 .getResultList();
     }
+    
+    @Override
+    public List<Encheres> getForEnchereur(Long id){
+        return em
+                .createNamedQuery("Encheres.allForEnchereur", Encheres.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
 }

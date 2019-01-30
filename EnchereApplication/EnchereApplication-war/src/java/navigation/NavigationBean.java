@@ -41,6 +41,7 @@ public class NavigationBean {
             this.list.add(new NavigationElement("Mes Articles", "list.xhtml"));
             this.list.add(new NavigationElement("Rechercher", "searchArticle.xhtml"));
             this.list.add(new NavigationElement("Mon Panier", "panier.xhtml"));
+            this.list.add(new NavigationElement("Mes enchères", "displayEncheres.xhtml"));
             id = Long.parseLong(idCookie.getValue());
             nom = nomCookie.getValue();
             prenom = prenomCookie.getValue();

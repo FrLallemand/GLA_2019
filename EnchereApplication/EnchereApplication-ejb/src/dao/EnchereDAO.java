@@ -19,5 +19,6 @@ public interface EnchereDAO {
     public Encheres create(Encheres e);
 
     public List<Encheres> getForArticle(Long id);
+    public List<Encheres> getForEnchereur(Long id);
     
 }

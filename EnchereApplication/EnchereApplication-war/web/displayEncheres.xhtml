@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    
+    <f:metadata>
+        <f:viewAction action="#{displayEncheresBean.retrieveAll()}" /> 
+    </f:metadata>    
+    
+    <h:body>
+        
+        <ui:composition template="common/layout.xhtml">
+
+            <ui:define name="htmlhead">
+                <title>Enchères</title>
+
+            </ui:define>
+            
+            
+            <ui:define name="content">
+                <c:if test="#{not empty navigationBean.id}">
+                <table>
+                    <div class="row">
+                        <ui:repeat var="elem" value="#{displayEncheresBean.encheres}">
+
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <h:link outcome="displayArticle" value="#{elem.article.nom}">
+                                                <f:param name="id" value="#{elem.article.id}" />
+                                            </h:link>
+                                        </h4>
+                                        <p class="card-text">#{elem.montant}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ui:repeat>
+                    </div>
+                </table>
+                </c:if>
+            </ui:define>
+
+        </ui:composition>
+            
+            
+    </h:body>
+</html>
+
