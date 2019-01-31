@@ -30,7 +30,9 @@ import javax.persistence.Table;
         @NamedQuery(name= "Encheres.listOfBuyerOrdered",
                 query="SELECT e FROM Encheres e WHERE e.article=:mArticle ORDER BY e.montant DESC"),
         @NamedQuery(name= "Encheres.allForEnchereur",
-                query="SELECT e FROM Encheres e WHERE e.enchereur.id=:id")
+                query="SELECT e FROM Encheres e WHERE e.enchereur.id=:id"),
+        @NamedQuery(name= "Encheres.forEnchereurAndArticle",
+                query="SELECT e FROM Encheres e WHERE e.enchereur.id=:idEnchereur AND e.article.id=:idArticle")
 })
 
 public class Encheres {

@@ -17,8 +17,10 @@ import javax.ejb.Local;
 public interface EnchereDAO {
 
     public Encheres create(Encheres e);
+    public Encheres update(Encheres e);
 
     public List<Encheres> getForArticle(Long id);
     public List<Encheres> getForEnchereur(Long id);
+    public Encheres getForEnchereurAndArticle(Long idEnchereur, Long idArticle);
     
 }

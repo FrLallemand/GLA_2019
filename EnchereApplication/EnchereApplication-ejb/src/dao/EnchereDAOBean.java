@@ -26,7 +26,14 @@ public class EnchereDAOBean implements EnchereDAO {
         em.persist(e);
         return e;
     }
-        
+
+    
+    @Override
+    public Encheres update(Encheres e){
+        em.merge(e);
+        return e;
+    }
+    
     @Override
     public List<Encheres> getForArticle(Long id){
         return em
@@ -42,5 +49,15 @@ public class EnchereDAOBean implements EnchereDAO {
                 .setParameter("id", id)
                 .getResultList();
     }
+    
+    @Override
+    public Encheres getForEnchereurAndArticle(Long idEnchereur, Long idArticle){
+        return em
+                .createNamedQuery("Encheres.forEnchereurAndArticle", Encheres.class)
+                .setParameter("idEnchereur", idEnchereur)
+                .setParameter("idArticle", idArticle)
+                .getSingleResult();
+    }
+
 
 }

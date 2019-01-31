@@ -55,9 +55,9 @@ public class EnchereBean {
     }
     
     public void setUp(){
-        System.out.println(articleId);
+        //System.out.println(articleId);
         article = articleDAOBean.getById(articleId);
-        System.out.println(article.getNom());
+        //System.out.println(article.getNom());
         user = utilisateurDAOBean.getById(CookieJar.getInstance().getIdCookie().getValue());
     }
     
@@ -88,14 +88,20 @@ public class EnchereBean {
     
     public String putEnchere(){
         this.setUp();
+        Encheres enchereExistante = enchereDAOBean.getForEnchereurAndArticle(user.getId(), article.getId());
         if(validValue){
-            Encheres e = new Encheres();
-            System.out.println("article = " + this.article.getNom());
-            e.setArticle(article);
-            e.setMontant(this.enchereValue);
-            e.setEnchereur(user);
-            System.out.println("article = " + this.user.getNom());
-            enchereDAOBean.create(e);
+            if(enchereExistante==null){
+                Encheres e = new Encheres();
+                //System.out.println("article = " + this.article.getNom());
+                e.setArticle(article);
+                e.setMontant(this.enchereValue);
+                e.setEnchereur(user);
+                //System.out.println("article = " + this.user.getNom());
+                enchereDAOBean.create(e);
+            } else {
+                enchereExistante.setMontant(this.enchereValue);
+                enchereDAOBean.update(enchereExistante);
+            }
         }
         
         return "list";
@@ -108,4 +114,14 @@ public class EnchereBean {
     public void setArticleId(Long id){
         this.articleId = id;
     }
+    
+    public void retrieveEnchereValue() {
+        Encheres enchereExistante = enchereDAOBean.getForEnchereurAndArticle(user.getId(), article.getId());
+        if(enchereExistante==null){
+            this.enchereValue = 0.0;
+        } else {
+            this.enchereValue = enchereExistante.getMontant();
+        }
+    }
+
 }

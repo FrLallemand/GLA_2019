@@ -13,6 +13,7 @@
         <f:viewParam name="id" value="#{enchereBean.articleId}" /> 
         <f:viewAction action="#{displayArticleBean.retrieveArticle()}" />
         <f:viewAction action="#{enchereBean.setUp()}" /> 
+        <f:viewAction action="#{enchereBean.retrieveEnchereValue()}" /> 
     </f:metadata>    
     
     <h:body>
@@ -53,7 +54,7 @@
                             <c:when test="#{not displayArticleBean.isVendeur() and not displayArticleBean.article.estFini()}">
                                 <h:form>
                                     <fieldset>
-                                        <h:inputText id="enchereValue" class="form-control" value="#{enchereBean.enchereValue}"/>
+                                        <h:inputText id="enchereValue" class="form-control" value="#{enchereBean.enchereValue}"/>   
                                         <h:commandButton value="Enchérir" class="btn btn-primary" action="#{enchereBean.putEnchere()}" />
                                     </fieldset>
                                 </h:form>
