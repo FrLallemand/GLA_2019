@@ -8,13 +8,10 @@ package encheres;
 
 import cookies.CookieJar;
 import dao.ArticleDAO;
-import dao.ArticleDAOBean;
 import dao.EnchereDAO;
-import dao.UtilisateurDAOBean;
 import entities.Article;
 import entities.Encheres;
 import entities.Utilisateur;
-import dao.EnchereDAOBean;
 import dao.UtilisateurDAO;
 import java.util.List;
 import javax.ejb.EJB;
@@ -56,9 +53,7 @@ public class EnchereBean {
     }
     
     public void setUp(){
-        //System.out.println(articleId);
         article = articleDAOBean.getById(articleId);
-        //System.out.println(article.getNom());
         user = utilisateurDAOBean.getById(CookieJar.getInstance().getIdCookie().getValue());
     }
     
@@ -99,11 +94,9 @@ public class EnchereBean {
         if(validValue){
             if(enchereExistante==null){
                 Encheres e = new Encheres();
-                //System.out.println("article = " + this.article.getNom());
                 e.setArticle(article);
                 e.setMontant(this.enchereValue);
                 e.setEnchereur(user);
-                //System.out.println("article = " + this.user.getNom());
                 enchereDAOBean.create(e);
             } else {
                 enchereExistante.setMontant(this.enchereValue);

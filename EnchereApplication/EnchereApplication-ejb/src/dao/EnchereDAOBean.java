@@ -6,7 +6,6 @@
 
 package dao;
 
-import entities.Article;
 import entities.Encheres;
 import java.util.List;
 import javax.ejb.Stateless;

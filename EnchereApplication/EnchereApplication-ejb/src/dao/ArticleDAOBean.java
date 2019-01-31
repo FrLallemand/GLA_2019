@@ -9,11 +9,9 @@ import entities.Article;
 import entities.Utilisateur;
 import java.util.Date;
 import java.util.List;
-import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.Cookie;
 
 /**
  *
@@ -74,7 +72,6 @@ public class ArticleDAOBean implements ArticleDAO {
         for(Article art:listToSend){
             art.setSended(true);
             em.merge(art);
-            //TODO envoyer l'article
         }
     }
 
@@ -105,8 +102,6 @@ public class ArticleDAOBean implements ArticleDAO {
     
     @Override
     public void removeById(long id) {
-        //TODO : correct relations in database
-        
         em.remove(em.find(Article.class, id));        
     }
     
@@ -118,8 +113,7 @@ public class ArticleDAOBean implements ArticleDAO {
     
     @Override
     public Boolean isVendeur(Article a,long id){
-        //System.out.println("error:"+a.getAcheteur().getId());
         Utilisateur vendeur = em.merge(a.getVendeur());
-        return vendeur.getId()==id;//a.getAcheteur().getId()==id;
+        return vendeur.getId()==id;
     }
 }

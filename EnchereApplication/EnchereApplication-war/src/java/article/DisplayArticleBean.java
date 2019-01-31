@@ -7,18 +7,13 @@ package article;
 
 import cookies.CookieJar;
 import dao.ArticleDAO;
-import dao.ArticleDAOBean;
 import dao.EnchereDAO;
-import dao.EnchereDAOBean;
 import entities.Article;
-import entities.Encheres;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
-import javax.servlet.http.Cookie;
 
 /**
  *
@@ -34,9 +29,6 @@ public class DisplayArticleBean {
     
     @EJB
     private ArticleDAO articleDAOBean;
-    
-    @EJB
-    private EnchereDAO enchereDAOBean;
 
     private Article article;
     

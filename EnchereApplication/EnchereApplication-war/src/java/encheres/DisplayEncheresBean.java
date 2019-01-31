@@ -8,7 +8,6 @@ package encheres;
 import cookies.CookieJar;
 import dao.ArticleDAO;
 import dao.EnchereDAO;
-import entities.Article;
 import entities.Encheres;
 import java.util.List;
 import javax.ejb.EJB;
