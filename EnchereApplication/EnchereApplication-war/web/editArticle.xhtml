@@ -49,9 +49,9 @@
 
                                 <h:commandButton value="Modifier" class="btn btn-primary" action="#{editArticleBean.edit()}" />
                             </fieldset>
+                            <h:commandButton class="btn btn-primary" value="Supprimer" action="#{editArticleBean.removeArticle()}" />
                         </h:form>
-                        <h:commandButton class="btn btn-primary" value="Supprimer" action="#{editArticleBean.removeArticle()}" />
-       
+                        
                     </c:when>
                 </c:choose>
             </ui:define>
