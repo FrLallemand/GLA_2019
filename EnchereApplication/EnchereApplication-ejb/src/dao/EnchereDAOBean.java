@@ -6,6 +6,7 @@
 
 package dao;
 
+import entities.Article;
 import entities.Encheres;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -35,6 +36,11 @@ public class EnchereDAOBean implements EnchereDAO {
     }
     
     @Override
+    public void removeById(long id) {
+        em.remove(em.find(Encheres.class, id));        
+    }
+    
+    @Override
     public List<Encheres> getForArticle(Long id){
         return em
                 .createNamedQuery("Encheres.findForArticle", Encheres.class)
@@ -58,6 +64,5 @@ public class EnchereDAOBean implements EnchereDAO {
                 .setParameter("idArticle", idArticle)
                 .getSingleResult();
     }
-
 
 }

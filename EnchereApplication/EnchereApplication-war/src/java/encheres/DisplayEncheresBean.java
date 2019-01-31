@@ -27,6 +27,9 @@ import javax.servlet.http.Cookie;
 @RequestScoped
 public class DisplayEncheresBean {
         
+    @ManagedProperty(value = "#{param.id}")
+    private Long id;
+        
     @EJB
     private ArticleDAO articleDAO;
     
@@ -39,6 +42,12 @@ public class DisplayEncheresBean {
     public void retrieveAll(){
         Cookie idCookie = CookieJar.getInstance().getIdCookie();
         encheres =  enchereDAO.getForEnchereur(Long.parseLong(idCookie.getValue()));
+    }
+    
+    public String removeEnchere(){
+        //enchereDAO.removeById(this.id);
+        System.out.println("PLOP");
+        return "index?faces-redirect=true";
     }
 
     public ArticleDAO getArticleDAO() {
@@ -65,6 +74,13 @@ public class DisplayEncheresBean {
         this.encheres = encheres;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     
 }

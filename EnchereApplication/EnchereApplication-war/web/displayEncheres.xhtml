@@ -37,6 +37,10 @@
                                             </h:link>
                                         </h4>
                                         <p class="card-text">#{elem.montant}</p>
+                                        <h:form>
+                                            <h:inputText class="form-control" value="#{elem.id}" />
+                                            <h:commandButton class="btn btn-primary" value="Supprimer" action="#{displayEncheresBean.retrieveAll()}" />
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>
