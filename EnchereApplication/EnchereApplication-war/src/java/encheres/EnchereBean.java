@@ -22,6 +22,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -61,6 +62,12 @@ public class EnchereBean {
         user = utilisateurDAOBean.getById(CookieJar.getInstance().getIdCookie().getValue());
     }
     
+    public String removeEncheres(){
+        Cookie idCookie = CookieJar.getInstance().getIdCookie();
+        enchereDAOBean.removeForEnchereurAndArticle(Long.parseLong(idCookie.getValue()), this.articleId);
+        return "list";
+    }
+
     public void setEnchereValue(String svalue){
         Double value = Double.parseDouble(svalue);
         

@@ -27,7 +27,6 @@
                 <table>
                     <div class="row">
                         <ui:repeat var="elem" value="#{displayEncheresBean.encheres}">
-
                             <div class="col-lg-4 col-sm-6">
                                 <div class="card h-100">
                                     <div class="card-body">
@@ -37,10 +36,6 @@
                                             </h:link>
                                         </h4>
                                         <p class="card-text">#{elem.montant}</p>
-                                        <h:form>
-                                            <h:inputText class="form-control" value="#{elem.id}" />
-                                            <h:commandButton class="btn btn-primary" value="Supprimer" action="#{displayEncheresBean.retrieveAll()}" />
-                                        </h:form>
                                     </div>
                                 </div>
                             </div>

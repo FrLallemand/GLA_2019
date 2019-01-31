@@ -44,12 +44,6 @@ public class DisplayEncheresBean {
         encheres =  enchereDAO.getForEnchereur(Long.parseLong(idCookie.getValue()));
     }
     
-    public String removeEnchere(){
-        //enchereDAO.removeById(this.id);
-        System.out.println("PLOP");
-        return "index?faces-redirect=true";
-    }
-
     public ArticleDAO getArticleDAO() {
         return articleDAO;
     }

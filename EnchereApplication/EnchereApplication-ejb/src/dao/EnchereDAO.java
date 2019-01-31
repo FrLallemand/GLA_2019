@@ -23,5 +23,6 @@ public interface EnchereDAO {
     public List<Encheres> getForArticle(Long id);
     public List<Encheres> getForEnchereur(Long id);
     public Encheres getForEnchereurAndArticle(Long idEnchereur, Long idArticle);
+    public void removeForEnchereurAndArticle(Long idEnchereur, Long idArticle);
     
 }
