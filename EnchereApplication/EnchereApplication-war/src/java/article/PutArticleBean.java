@@ -9,6 +9,7 @@ import cookies.CookieJar;
 import dao.ArticleDAO;
 import dao.ArticleDAOBean;
 import entities.Article;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -36,6 +37,9 @@ public class PutArticleBean {
 
     public String putArticle(){
         Cookie idCookie = CookieJar.getInstance().getIdCookie();
+        if(article.getFin() == null){
+            article.setFin(new Date());
+        }
         articleDAO.addToUtilisateur(article, Long.parseLong(idCookie.getValue()));
         return "index?faces-redirect=true";
      }

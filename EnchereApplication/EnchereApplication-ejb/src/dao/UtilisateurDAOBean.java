@@ -8,6 +8,7 @@ package dao;
 import entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -29,24 +30,33 @@ public class UtilisateurDAOBean implements UtilisateurDAO {
     
     @Override
     public Utilisateur getById(String id){
-        Utilisateur u = em
-                .createNamedQuery("Utilisateur.userById", Utilisateur.class)
-                .setParameter("id", Long.parseLong(id))
-                .getSingleResult();
-        return u;
+        try {
+            Utilisateur u = em
+                    .createNamedQuery("Utilisateur.userById", Utilisateur.class)
+                    .setParameter("id", Long.parseLong(id))
+                    .getSingleResult();
+            return u;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
     @Override
     public Utilisateur authenticate(String login, String mdp) {
-        Utilisateur u = em
-                .createNamedQuery("Utilisateur.authenticate", Utilisateur.class)
-                .setParameter("login", login)
-                .getSingleResult();
+        try {
+            Utilisateur u = em
+                    .createNamedQuery("Utilisateur.authenticate", Utilisateur.class)
+                    .setParameter("login", login)
+                    .getSingleResult();
 
-        if(u != null && u.getMdp().equals(mdp)) {
-            return u;
-        } else {
+            if(u != null && u.getMdp().equals(mdp)) {
+                return u;
+            } else {
+                return null;
+            }
+        } catch (NoResultException e) {
             return null;
         }
+
     }
 }

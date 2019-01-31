@@ -17,8 +17,8 @@
             </ui:define>
 
             <ui:define name="content">
-                <h2>Articles en vente :</h2>
                 <c:if test="#{not empty navigationBean.id}">
+                <h2>Articles en vente :</h2>
                 <table>
                     <div class="row">
                         <ui:repeat var="elem" value="#{searchArticleBean.all}">
@@ -41,7 +41,9 @@
                     </div>
                 </table>
                 </c:if>
-
+                <c:if test="#{empty navigationBean.id}">
+                    <h2>Veuillez vous connecter.</h2>
+                </c:if>
             </ui:define>
 
         </ui:composition>
