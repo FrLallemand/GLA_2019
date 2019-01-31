@@ -56,6 +56,7 @@
                                     <fieldset>
                                         <h:inputText id="enchereValue" class="form-control" value="#{enchereBean.enchereValue}"/>   
                                         <h:commandButton value="Enchérir" class="btn btn-primary" action="#{enchereBean.putEnchere()}" />
+                                        <h:commandButton class="btn btn-primary" value="Supprimer toutes les enchères" action="#{enchereBean.removeEncheres()}" />
                                     </fieldset>
                                 </h:form>
                             </c:when>

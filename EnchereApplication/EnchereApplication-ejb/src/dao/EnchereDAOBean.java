@@ -11,6 +11,7 @@ import entities.Encheres;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -27,7 +28,6 @@ public class EnchereDAOBean implements EnchereDAO {
         em.persist(e);
         return e;
     }
-
     
     @Override
     public Encheres update(Encheres e){
@@ -58,11 +58,20 @@ public class EnchereDAOBean implements EnchereDAO {
     
     @Override
     public Encheres getForEnchereurAndArticle(Long idEnchereur, Long idArticle){
-        return em
-                .createNamedQuery("Encheres.forEnchereurAndArticle", Encheres.class)
-                .setParameter("idEnchereur", idEnchereur)
-                .setParameter("idArticle", idArticle)
-                .getSingleResult();
+        try{
+            return em
+                    .createNamedQuery("Encheres.forEnchereurAndArticle", Encheres.class)
+                    .setParameter("idEnchereur", idEnchereur)
+                    .setParameter("idArticle", idArticle)
+                    .getSingleResult();
+        } catch(NoResultException e){
+            return null;
+        }
+    }
+    
+    @Override
+    public void removeForEnchereurAndArticle(Long idEnchereur, Long idArticle){
+        em.remove(this.getForEnchereurAndArticle(idEnchereur, idArticle));
     }
 
 }
