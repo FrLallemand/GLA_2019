@@ -75,3 +75,6 @@ EnchereApplication/nbproject/*
 /EnchereApplication/build/
 /EnchereApplication/EnchereApplication-war/dist/
 
+/ReceivedCommande/build/
+/ReceivedCommande/dist/
+/ReceivedCommande/nbproject/private/

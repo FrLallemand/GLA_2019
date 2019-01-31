@@ -35,7 +35,7 @@ public class SearchArticleBean {
     private String nom;
     
     public SearchArticleBean(){
-        this.articles = new ArrayList<Article>();        
+        this.articles = new ArrayList<>();        
     }
 
     public void search(){

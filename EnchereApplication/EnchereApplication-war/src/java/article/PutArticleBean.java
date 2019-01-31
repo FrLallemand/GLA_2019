@@ -7,7 +7,6 @@ package article;
 
 import cookies.CookieJar;
 import dao.ArticleDAO;
-import dao.ArticleDAOBean;
 import entities.Article;
 import java.util.Date;
 import javax.ejb.EJB;

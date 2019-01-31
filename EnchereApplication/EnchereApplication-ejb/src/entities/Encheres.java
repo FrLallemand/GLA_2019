@@ -5,6 +5,7 @@
  */
 package entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -35,7 +35,7 @@ import javax.persistence.Table;
                 query="SELECT e FROM Encheres e WHERE e.enchereur.id=:idEnchereur AND e.article.id=:idArticle")
 })
 
-public class Encheres {
+public class Encheres implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -43,7 +43,13 @@ public class Encheres {
     private Long id;
     
     private double montant;
-
+                
+    @ManyToOne
+    Utilisateur enchereur;
+    
+    @ManyToOne
+    Article article;
+    
     public double getMontant() {
         return montant;
     }
@@ -67,12 +73,6 @@ public class Encheres {
     public void setArticle(Article article) {
         this.article = article;
     }
-            
-    @ManyToOne
-    Utilisateur enchereur;
-    
-    @ManyToOne
-    Article article;
 
     public Long getId() {
         return id;
