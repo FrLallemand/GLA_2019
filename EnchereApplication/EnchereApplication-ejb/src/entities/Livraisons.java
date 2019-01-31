@@ -6,11 +6,19 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -19,24 +27,98 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LIVRAISONS")
 public class Livraisons implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "COMMAND_ID")
+    private Integer commandId;
+    
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    @OneToOne
+    private Utilisateur userId;
 
-    public Long getId() {
-        return id;
+    @JoinColumn(name = "ARTICLE_ID", referencedColumnName = "ID")    
+    @OneToOne
+    private Article articleId;
+
+    @Column(name = "CREATED")
+    @Temporal(TemporalType.DATE)
+    private Date created;
+    
+    @Column(name = "ETAT_LIVRAISON")
+    @NotNull
+    private Boolean etatLivraison;
+    
+    @Column(name = "ETAT_FACTURATION")
+    @NotNull
+    private Boolean etatFacturation;
+
+    @Column(name = "ETAT_CONFIRMATION")
+    @NotNull
+    private Boolean etatConfirmation;
+
+    public Integer getCommandId() {
+        return commandId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCommandId(Integer commandId) {
+        this.commandId = commandId;
     }
+
+    public Utilisateur getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Utilisateur userId) {
+        this.userId = userId;
+    }
+
+    public Article getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Article articleId) {
+        this.articleId = articleId;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Boolean getEtatLivraison() {
+        return etatLivraison;
+    }
+
+    public void setEtatLivraison(Boolean etatLivraison) {
+        this.etatLivraison = etatLivraison;
+    }
+
+    public Boolean getEtatFacturation() {
+        return etatFacturation;
+    }
+
+    public void setEtatFacturation(Boolean etatFacturation) {
+        this.etatFacturation = etatFacturation;
+    }
+
+    public Boolean getEtatConfirmation() {
+        return etatConfirmation;
+    }
+
+    public void setEtatConfirmation(Boolean etatConfirmation) {
+        this.etatConfirmation = etatConfirmation;
+    }
+    
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (commandId != null ? commandId.hashCode() : 0);
         return hash;
     }
 
@@ -47,7 +129,7 @@ public class Livraisons implements Serializable {
             return false;
         }
         Livraisons other = (Livraisons) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.commandId == null && other.commandId != null) || (this.commandId != null && !this.commandId.equals(other.commandId))) {
             return false;
         }
         return true;
@@ -55,7 +137,7 @@ public class Livraisons implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Livraisons[ id=" + id + " ]";
+        return "entities.Livraisons[ commandId=" + commandId + " ]";
     }
     
 }
