@@ -8,7 +8,9 @@ package article;
 import dao.ArticleDAO;
 import dao.EnchereDAO;
 import entities.Article;
+import entities.Encheres;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -27,6 +29,9 @@ public class EditArticleBean {
 
     @EJB
     private ArticleDAO articleDAOBean;
+    
+    @EJB
+    private EnchereDAO enchereDAOBean;
 
     private NavigationBean navigationBean;
 
@@ -55,6 +60,10 @@ public class EditArticleBean {
     
     public void removeArticle(){
         articleDAOBean.removeById(this.id);
+        List<Encheres> encheres = enchereDAOBean.getForArticle(this.id);
+        for(Encheres e : encheres){
+            enchereDAOBean.removeById(e.getId());
+        }
     }
 
 
